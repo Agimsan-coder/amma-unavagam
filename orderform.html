@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amma Unavagam | Order Online</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            color: #fff3df;
+            background-color: #1b0d06;
+            line-height: 1.8;
+            background-image:
+                linear-gradient(
+                    rgba(25, 12, 5, 0.78),
+                    rgba(25, 12, 5, 0.90)
+                ),
+                url("restaurant.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin: 25px 5%;
+            padding: 10px 24px;
+            color: #ffc44d;
+            background: rgba(35, 19, 10, 0.9);
+            border: 1px solid #bd842c;
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            transition: 0.3s;
+        }
+
+        .home-link:hover {
+            background: #ffc44d;
+            color: #241205;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 15px auto 50px;
+            padding: 35px;
+            background: rgba(35, 19, 10, 0.94);
+            border: 1px solid #bd842c;
+            border-radius: 12px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffc44d;
+            font-size: clamp(30px, 5vw, 44px);
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #f5e7d3;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #ffc44d;
+            margin: 25px 0 15px;
+            border-bottom: 1px solid #8e642c;
+            padding-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 30px;
+            font-family: Arial, sans-serif;
+        }
+
+        th {
+            background: #8c571b;
+            color: #fff3df;
+            padding: 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px;
+            border: 1px solid #78542c;
+            color: #fff3df;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255, 196, 77, 0.08);
+        }
+
+        tr:hover {
+            background: rgba(255, 196, 77, 0.13);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            color: #ffc44d;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: #fff8ed;
+            color: #28180d;
+            border: 1px solid #bd842c;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid #ffc44d;
+            outline-offset: 2px;
+        }
+
+        .total-box {
+            margin-top: 20px;
+            padding: 18px;
+            background: rgba(255, 196, 77, 0.10);
+            border: 1px solid #bd842c;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .total-box p {
+            color: #f5e7d3;
+        }
+
+        .total-price {
+            color: #ffc44d;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 14px;
+            background: linear-gradient(#ffd36c, #d99020);
+            color: #281305;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .note {
+            color: #d9c7ac;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                margin: 10px 12px 30px;
+                padding: 20px;
+            }
+
+            th, td {
+                padding: 10px 8px;
+                font-size: 14px;
+            }
+
+            body {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="home-link">← Home</a>
+
+    <main class="container">
+
+        <h1>Order Online</h1>
+
+        <p class="intro">
+            Amma Unavagam<br>
+            Authentic Kothu &amp; Traditional Flavours
+        </p>
+
+        <h2>Our Kothu Menu</h2>
+
+        <table>
+            <tr>
+                <th>Kothu Type</th>
+                <th>Price</th>
+            </tr>
+
+            <tr>
+                <td>Small Mutton Kothu</td>
+                <td>£9.50</td>
+            </tr>
+
+            <tr>
+                <td>Medium Mutton Kothu</td>
+                <td>£16.50</td>
+            </tr>
+
+            <tr>
+                <td>Large Mutton Kothu</td>
+                <td>£20.00</td>
+            </tr>
+        </table>
+
+        <h2>Place Your Order</h2>
+
+        <form id="orderForm" action="checkout.html" method="get">
+
+            <label for="kothu">Kothu Type</label>
+
+            <select id="kothu" name="kothu" required>
+                <option value="">Choose your kothu</option>
+                <option value="Small Mutton Kothu">Small Mutton Kothu - £9.50</option>
+                <option value="Medium Mutton Kothu">Medium Mutton Kothu - £16.50</option>
+                <option value="Large Mutton Kothu">Large Mutton Kothu - £20.00</option>
+            </select>
+
+            <label for="quantity">Quantity</label>
+
+            <input
+                id="quantity"
+                name="quantity"
+                type="number"
+                min="1"
+                max="50"
+                step="1"
+                value="1"
+                required
+            >
+
+            <label for="delivery">Delivery Date</label>
+
+            <input
+                id="delivery"
+                name="delivery"
+                type="date"
+                required
+            >
+
+            <div class="total-box">
+                <p>Your Order Total</p>
+                <p class="total-price" id="totalPrice">£0.00</p>
+            </div>
+
+            <button type="submit">Place Order →</button>
+
+        </form>
+
+        <p class="note">
+            Please check your selected kothu type, quantity, and delivery date before submitting.
+        </p>
+
+    </main>
+
+    <script>
+        const kothu = document.getElementById("kothu");
+        const quantity = document.getElementById("quantity");
+        const delivery = document.getElementById("delivery");
+        const totalPrice = document.getElementById("totalPrice");
+        const orderForm = document.getElementById("orderForm");
+
+        const prices = {
+            "Small Mutton Kothu": 9.50,
+            "Medium Mutton Kothu": 16.50,
+            "Large Mutton Kothu": 20.00
+        };
+
+        function updateTotal() {
+            const price = prices[kothu.value] || 0;
+            const amount = Number(quantity.value) || 0;
+
+            totalPrice.textContent =
+                "£" + (price * amount).toFixed(2);
+        }
+
+        kothu.addEventListener("change", updateTotal);
+        quantity.addEventListener("input", updateTotal);
+
+        // Prevent customers from choosing a date in the past.
+        const today = new Date();
+        const localToday = new Date(
+            today.getTime() - today.getTimezoneOffset() * 60000
+        ).toISOString().split("T")[0];
+
+        delivery.min = localToday;
+
+        orderForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (!prices[kothu.value]) {
+                alert("Please choose a kothu type.");
+                return;
+            }
+
+            const amount = Number(quantity.value);
+
+            if (!Number.isInteger(amount) || amount < 1 || amount > 50) {
+                alert("Please enter a quantity between 1 and 50.");
+                return;
+            }
+
+            if (!delivery.value || delivery.value < localToday) {
+                alert("Please choose a valid delivery date.");
+                return;
+            }
+
+            const params = new URLSearchParams({
+                kothu: kothu.value,
+                quantity: String(amount),
+                delivery: delivery.value
+            });
+
+            window.location.href =
+                "checkout.html?" + params.toString();
+        });
+
+        updateTotal();
+    </script>
+
+</body>
+</html>
+```

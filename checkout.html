@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amma Unavagam | Checkout</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            color: #fff3df;
+            background-color: #1b0d06;
+            background-image:
+                linear-gradient(
+                    rgba(25, 12, 5, 0.82),
+                    rgba(25, 12, 5, 0.92)
+                ),
+                url("restaurant.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin: 25px 5%;
+            padding: 10px 24px;
+            color: #ffc44d;
+            background: rgba(35, 19, 10, 0.9);
+            border: 1px solid #bd842c;
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+        }
+
+        .home-link:hover {
+            background: #ffc44d;
+            color: #241205;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 15px auto 50px;
+            padding: 35px;
+            background: rgba(35, 19, 10, 0.96);
+            border: 1px solid #bd842c;
+            border-radius: 12px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffc44d;
+            font-size: clamp(30px, 5vw, 42px);
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #f5e7d3;
+        }
+
+        h2 {
+            color: #ffc44d;
+            margin: 20px 0 15px;
+            border-bottom: 1px solid #8e642c;
+            padding-bottom: 8px;
+        }
+
+        .summary {
+            background: rgba(255, 196, 77, 0.08);
+            border: 1px solid #78542c;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #78542c;
+        }
+
+        .summary-row span:first-child {
+            color: #d9c7ac;
+        }
+
+        .summary-row span:last-child {
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 196, 77, 0.12);
+            border-radius: 6px;
+            color: #ffc44d;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            margin-top: 18px;
+            padding: 14px;
+            background: linear-gradient(#ffd36c, #d99020);
+            color: #281305;
+            border: none;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            filter: brightness(1.1);
+        }
+
+        .secondary {
+            background: transparent;
+            color: #ffc44d;
+            border: 1px solid #bd842c;
+        }
+
+        .note {
+            margin-top: 20px;
+            color: #d9c7ac;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                margin: 10px 12px 30px;
+                padding: 20px;
+            }
+
+            body {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="home-link">← Home</a>
+
+    <main class="container">
+
+        <h1>Checkout</h1>
+
+        <p class="intro">
+            Amma Unavagam<br>
+            Please review your order before continuing.
+        </p>
+
+        <h2>Your Order Summary</h2>
+
+        <div class="summary">
+            <div class="summary-row">
+                <span>Kothu Type</span>
+                <span id="kothu">—</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Price Each</span>
+                <span id="price">—</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Quantity</span>
+                <span id="quantity">—</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Delivery Date</span>
+                <span id="delivery">—</span>
+            </div>
+
+            <div class="total">
+                <span>Total</span>
+                <span id="total">—</span>
+            </div>
+        </div>
+
+        <button class="button" id="paymentButton" type="button">
+            Proceed to Payment →
+        </button>
+
+        <a href="orderform.html" class="button secondary">
+            ← Change My Order
+        </a>
+
+        <p class="note">
+            Demo checkout: no payment has been taken and your order has not been sent to a restaurant.
+        </p>
+
+    </main>
+
+    <script>
+        const prices = {
+            "Small Mutton Kothu": 9.50,
+            "Medium Mutton Kothu": 16.50,
+            "Large Mutton Kothu": 20.00
+        };
+
+        const params = new URLSearchParams(window.location.search);
+
+        const kothu = params.get("kothu");
+        const quantity = Number(params.get("quantity"));
+        const delivery = params.get("delivery");
+
+        const today = new Date();
+        const localToday = new Date(
+            today.getTime() - today.getTimezoneOffset() * 60000
+        ).toISOString().split("T")[0];
+
+        const validDate =
+            /^\d{4}-\d{2}-\d{2}$/.test(delivery || "") &&
+            !Number.isNaN(Date.parse(delivery + "T00:00:00")) &&
+            new Date(delivery + "T00:00:00").toISOString().startsWith(delivery);
+
+        if (
+            !Object.prototype.hasOwnProperty.call(prices, kothu) ||
+            !Number.isInteger(quantity) ||
+            quantity < 1 ||
+            quantity > 50 ||
+            !validDate ||
+            delivery < localToday
+        ) {
+            document.querySelector(".summary").innerHTML =
+                "<p>We could not verify your order details. Please return to the order form and try again.</p>";
+
+            document.getElementById("paymentButton").disabled = true;
+            document.getElementById("paymentButton").textContent =
+                "Order Details Invalid";
+            document.getElementById("paymentButton").style.opacity = "0.5";
+        } else {
+            const price = prices[kothu];
+            const total = price * quantity;
+
+            document.getElementById("kothu").textContent = kothu;
+            document.getElementById("price").textContent =
+                "£" + price.toFixed(2);
+            document.getElementById("quantity").textContent = quantity;
+            document.getElementById("delivery").textContent =
+                new Date(delivery + "T12:00:00").toLocaleDateString(
+                    "en-GB",
+                    {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+            document.getElementById("total").textContent =
+                "£" + total.toFixed(2);
+
+            document.getElementById("paymentButton").addEventListener(
+                "click",
+                function() {
+                    alert(
+                        "This is a demo checkout. Real payments are not connected yet."
+                    );
+                }
+            );
+        }
+    </script>
+
+</body>
+</html>
+```
